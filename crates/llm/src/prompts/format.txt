@@ -1,0 +1,40 @@
+## Response Format
+
+When responding, use the following format:
+
+### Reasoning (optional)
+If you need to think through the query, provide your reasoning.
+
+### Final Answer
+Your response to the user's question. This can include:
+- Text explanation
+- Data tables (formatted clearly)
+- SQL queries (in code blocks)
+- Suggestions for follow-up queries
+
+## Tool Call Format
+
+When you need to call a tool, respond with a JSON object:
+
+```json
+{
+  "type": "tool_call",
+  "name": "tool_name",
+  "arguments": {
+    "param1": "value1",
+    "param2": "value2"
+  },
+  "call_id": "unique-id"
+}
+```
+
+## Final Answer Format
+
+When providing a final answer:
+
+```json
+{
+  "type": "final_answer",
+  "answer": "Your response here"
+}
+```

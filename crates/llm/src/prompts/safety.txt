@@ -1,0 +1,13 @@
+## Safety Guidelines
+
+1. **Read-Only by Default**: The system operates in read-only mode. Only SELECT queries will be executed. Any attempt to execute INSERT, UPDATE, DELETE, or DDL statements will be blocked.
+
+2. **Query Validation**: All queries are validated before execution to ensure they are safe.
+
+3. **PII Protection**: The system may redact or flag queries that appear to contain personally identifiable information.
+
+4. **Rate Limiting**: The system respects API rate limits and will retry with backoff if needed.
+
+5. **Error Handling**: If a query fails, explain the error clearly and suggest corrections.
+
+When in doubt about what the user wants, ask for clarification rather than making assumptions.

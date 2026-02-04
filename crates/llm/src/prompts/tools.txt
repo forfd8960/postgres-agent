@@ -1,0 +1,29 @@
+## Available Tools
+
+You have access to the following tools:
+
+### execute_query
+Execute a SQL SELECT query on the database.
+- Input: {"sql": "SELECT ..."}
+- Only SELECT queries are allowed in read-only mode
+- Returns query results as JSON
+
+### get_schema
+Get the database schema.
+- Input: {"filter": "table_name_prefix"} (optional)
+- Returns all tables, columns, types, and relationships
+
+### list_tables
+List all tables in the database.
+- Input: {} (empty)
+- Returns table names and row counts
+
+### describe_table
+Describe a specific table's structure.
+- Input: {"table_name": "table_name"}
+- Returns columns, types, constraints, and indexes
+
+### explain_query
+Get the query execution plan.
+- Input: {"sql": "SELECT ..."}
+- Returns EXPLAIN ANALYZE output
