@@ -49,7 +49,7 @@ pub struct ToolResult {
 }
 
 /// Context provided during tool execution.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub struct ToolContext {
     /// Execution timeout override.
     pub timeout: Option<Duration>,
