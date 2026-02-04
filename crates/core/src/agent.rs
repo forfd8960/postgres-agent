@@ -395,7 +395,7 @@ impl<Client: LlmClient> PostgresAgent<Client> {
                 }
 
                 AgentDecision::FinalAnswer(answer) => {
-                    final_answer = answer;
+                    final_answer = answer.clone();
                     self.context.add_assistant_message(&answer);
                     break;
                 }

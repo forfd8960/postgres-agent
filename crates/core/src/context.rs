@@ -94,7 +94,7 @@ impl Default for MessageRole {
 }
 
 /// Statistics about the conversation context.
-#[derive(Debug, Default, Clone)]
+#[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct ContextStats {
     /// Total message count.
     pub message_count: usize,
@@ -109,7 +109,7 @@ pub struct ContextStats {
 }
 
 /// The agent's context for a conversation session.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AgentContext {
     /// Conversation messages.
     messages: Vec<Message>,
