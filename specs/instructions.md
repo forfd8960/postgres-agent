@@ -49,3 +49,7 @@ refer documents: ./specs/0001_agent_research.md, ./specs/0002_agent_research1.md
 
 update tech spec that for `OpenAiProvider` to use `async-openai` crate as LlmClient.
 Use async-openai crate(https://docs.rs/async-openai/latest/async_openai/) as LlmClient in OpenAiProvider.
+
+## Implement plan
+
+write an implement plan based on the tech spec for Postgres Agent.

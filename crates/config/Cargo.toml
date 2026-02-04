@@ -1,0 +1,28 @@
+[package]
+name = "postgres-agent-config"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+description = "Configuration management for PostgreSQL Agent"
+
+[dependencies]
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+serde_yaml.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+derive_more.workspace = true
+secrecy.workspace = true
+url.workspace = true
+dirs = "5"
+notify = "6"
+
+# Internal dependencies
+postgres-agent-util = { path = "../util" }
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3"

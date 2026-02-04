@@ -1,0 +1,27 @@
+[package]
+name = "postgres-agent-llm"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+description = "LLM provider abstraction for PostgreSQL Agent"
+
+[dependencies]
+tokio.workspace = true
+async-openai.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+secrecy.workspace = true
+async-trait.workspace = true
+url.workspace = true
+
+# Internal dependencies
+postgres-agent-util = { path = "../util" }
+postgres-agent-config = { path = "../config" }
+
+[dev-dependencies]
+tokio-test = "0.4"
+mockall = "0.13"

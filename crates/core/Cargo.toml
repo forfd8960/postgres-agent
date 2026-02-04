@@ -1,0 +1,30 @@
+[package]
+name = "postgres-agent-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+description = "Core agent logic for PostgreSQL Agent"
+
+[dependencies]
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+secrecy.workspace = true
+async-trait.workspace = true
+derive_more.workspace = true
+chrono.workspace = true
+
+# Internal dependencies
+postgres-agent-llm = { path = "../llm" }
+postgres-agent-db = { path = "../db" }
+postgres-agent-tools = { path = "../tools" }
+postgres-agent-safety = { path = "../safety" }
+postgres-agent-config = { path = "../config" }
+postgres-agent-util = { path = "../util" }
+
+[dev-dependencies]
+postgres-agent-llm = { path = "../llm" }
