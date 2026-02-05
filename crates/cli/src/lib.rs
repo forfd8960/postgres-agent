@@ -1,6 +1,11 @@
 //! CLI interface for PostgreSQL Agent.
+//!
+//! Provides clap-based command-line argument parsing and CLI command implementations.
 
 #![warn(missing_docs)]
 
-// Commands module (Phase 2)
-// pub mod commands;
+pub mod args;
+pub mod commands;
+
+pub use args::{CliArgs, Commands};
+pub use commands::{OutputFormat, QueryContext, QueryResult};
