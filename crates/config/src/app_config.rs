@@ -6,7 +6,7 @@ use super::{DatabaseProfile, LlmConfig, SafetyConfig};
 
 /// Application configuration.
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
-#[serde(rename_all = "camelCase")]
+#[serde(rename_all = "kebab-case")]
 pub struct AppConfig {
     /// LLM provider configuration.
     #[serde(default)]
@@ -30,7 +30,7 @@ pub type Config = AppConfig;
 
 /// Agent behavior configuration.
 #[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[serde(rename_all = "kebab-case")]
 pub struct AgentConfig {
     /// Maximum conversation history to retain.
     #[serde(default = "default_max_history")]

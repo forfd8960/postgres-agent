@@ -114,8 +114,9 @@ pub fn mask_secret(s: &str, visible_chars: usize) -> String {
     let prefix = &s[..visible_chars];
     let suffix = &s[s.len().saturating_sub(visible_chars)..];
     let masked_len = s.len().saturating_sub(visible_chars * 2);
+    let mask = "*".repeat(masked_len.min(20));
 
-    format!("{}***{}{}", prefix, "*".repeat(masked_len.min(20)), suffix)
+    format!("{}{}{}", prefix, mask, suffix)
 }
 
 /// Common secret types for the application.
@@ -164,27 +165,30 @@ mod tests {
         assert_eq!(mask_secret("abc", 2), "***");
 
         // Longer strings show first and last characters
-        assert_eq!(mask_secret("supersecretkey", 3), "sup*******ey");
+        // "supersecretkey" (14 chars) with 3 visible: "sup" + 8 asterisks + "key"
+        assert_eq!(mask_secret("supersecretkey", 3), "sup********key");
 
-        // Very long strings are truncated
-        let result = mask_secret("a".repeat(100), 3);
-        assert!(result.starts_with("a**"));
-        assert!(result.ends_with("***a"));
+        // Very long strings have mask truncated to 20 chars
+        let result = mask_secret(&"a".repeat(100), 3);
+        assert!(result.starts_with('a'));
+        assert!(result.ends_with('a'));
+        // mask should be 20 asterisks (100 - 3 - 3 = 94, min(20) = 20)
         assert!(result.contains("*******************"));
     }
 
     #[test]
     fn test_secret_string() {
         let secret = SecretString::new("my-secret-value");
-        assert_eq!(secret.len(), 14);
+        assert_eq!(secret.len(), 15);
         assert!(!secret.is_empty());
-        assert_eq!(format!("{}", secret), "***REDACTED(14 chars)***");
+        assert_eq!(format!("{}", secret), "***REDACTED(15 chars)***");
     }
 
     #[test]
     fn test_api_key_display() {
         let key = ApiKey::new("sk-1234567890abcdef");
         let display = format!("{}", key);
-        assert_eq!(display, "sk-1*************ef");
+        // "sk-1234567890abcdef" (19 chars) with 4 visible: "sk-1" + 11 asterisks + "cdef"
+        assert_eq!(display, "sk-1***********cdef");
     }
 }

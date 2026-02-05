@@ -4,12 +4,12 @@ use serde::{Deserialize, Serialize};
 
 /// Safety level.
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, Default)]
-#[serde(rename_all = "camelCase")]
+#[serde(rename_all = "kebab-case")]
 pub enum SafetyLevel {
     /// Maximum safety - read-only, no modifications.
+    #[default]
     ReadOnly,
     /// Balanced safety - confirmations for DML/DDL.
-    #[default]
     Balanced,
     /// Permissive - faster execution with minimal checks.
     Permissive,
@@ -17,7 +17,7 @@ pub enum SafetyLevel {
 
 /// Safety and security settings.
 #[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[serde(rename_all = "kebab-case")]
 pub struct SafetyConfig {
     /// Default safety level.
     #[serde(default)]

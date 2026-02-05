@@ -12,11 +12,11 @@ pub enum ConfigError {
         path: String,
     },
 
-    /// Failed to parse the configuration file as valid YAML.
+    /// Failed to parse the configuration file as valid TOML.
     #[error("Failed to parse configuration: {source}")]
     ParseError {
-        /// YAML parsing error details.
-        source: serde_yaml::Error,
+        /// TOML parsing error details.
+        source: toml::de::Error,
     },
 
     /// Configuration is invalid (e.g., missing required fields, invalid values).

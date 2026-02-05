@@ -1,6 +1,6 @@
 //! Configuration loader.
 //!
-//! Provides YAML configuration parsing, environment variable overrides,
+//! Provides TOML configuration parsing, environment variable overrides,
 //! validation, and file watching support.
 
 use std::path::{Path, PathBuf};
@@ -116,8 +116,8 @@ impl ConfigLoader {
             message: format!("Failed to read config file: {}", e),
         })?;
 
-        // Parse YAML
-        let mut config: AppConfig = serde_yaml::from_str(&content)
+        // Parse TOML
+        let mut config: AppConfig = toml::from_str(&content)
             .map_err(|e| ConfigError::ParseError { source: e })?;
 
         // Apply environment variable overrides
@@ -262,7 +262,7 @@ impl ConfigWatcher {
 
 impl Default for ConfigLoader {
     fn default() -> Self {
-        Self::new("config.yaml")
+        Self::new("config.toml")
     }
 }
 
@@ -311,24 +311,24 @@ mod tests {
 
     #[test]
     fn test_load_from_temp_file() {
-        let yaml_content = r#"
-llm:
-  provider: openai
-  model: gpt-4
-  temperature: 0.5
-  maxTokens: 2048
+        let toml_content = r#"
+[llm]
+provider = "openai"
+model = "gpt-4"
+temperature = 0.5
+max_tokens = 2048
 
-databases:
-  - name: testdb
-    url: postgresql://localhost/test
+[[databases]]
+name = "testdb"
+url = "postgresql://localhost/test"
 
-agent:
-  maxHistory: 100
-  maxIterations: 20
+[agent]
+max_history = 100
+max_iterations = 20
 "#;
 
         let temp_file = NamedTempFile::new().expect("Failed to create temp file");
-        std::fs::write(temp_file.path(), yaml_content).expect("Failed to write temp file");
+        std::fs::write(temp_file.path(), toml_content).expect("Failed to write temp file");
 
         let mut loader = ConfigLoader::new(temp_file.path());
         let config = loader.load().expect("Failed to load config");

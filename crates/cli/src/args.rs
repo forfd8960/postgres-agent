@@ -12,7 +12,7 @@ use clap::{Parser, Subcommand};
 #[command(about = "Query PostgreSQL databases using natural language", long_about = None)]
 pub struct CliArgs {
     /// Configuration file path
-    #[arg(short, long, default_value = "config.yaml")]
+    #[arg(short, long, default_value = "config.toml")]
     pub config: String,
 
     /// Log level (debug, info, warn, error)
@@ -90,6 +90,10 @@ pub enum Commands {
         #[arg(short, long)]
         table: Option<String>,
     },
+
+    /// Run system health checks
+    #[command(name = "doctor")]
+    Doctor,
 
     /// Show version and exit
     #[command(name = "version")]
@@ -193,7 +197,7 @@ mod tests {
     fn test_default_values() {
         let args = CliArgs::parse_from(["pg-agent"]);
 
-        assert_eq!(args.config, "config.yaml");
+        assert_eq!(args.config, "config.toml");
         assert_eq!(args.log_level, "info");
         assert_eq!(args.profile, "default");
         assert!(!args.no_confirm);

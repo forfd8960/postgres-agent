@@ -17,7 +17,6 @@ pub use postgres_agent_core as core;
 pub use postgres_agent_llm as llm;
 pub use postgres_agent_db as db;
 pub use postgres_agent_tools as tools;
-// pub use postgres_agent_tui as tui;
 pub use postgres_agent_config as config;
 pub use postgres_agent_safety as safety;
 pub use postgres_agent_cli as cli;

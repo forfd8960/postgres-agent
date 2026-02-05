@@ -1,0 +1,67 @@
+# PostgreSQL Agent Configuration
+# Copy this file to config.toml and modify as needed
+
+[llm]
+# LLM provider: openai, anthropic, ollama, etc.
+provider = "openai"
+
+# API base URL (optional, for custom endpoints)
+# base_url = "https://api.openai.com/v1"
+
+# API key - can use env:// prefix to load from environment variable
+# api_key = "env://OPENAI_API_KEY"
+api_key = "your-api-key-here"
+
+# Model identifier
+model = "gpt-4o"
+
+# Temperature for sampling (0.0 to 2.0)
+temperature = 0.0
+
+# Maximum tokens in response
+max_tokens = 4096
+
+[[databases]]
+# Database profile name (required)
+name = "default"
+
+# PostgreSQL connection URL
+url = "postgresql://postgres:postgres@localhost:5432/postgres"
+
+# Optional display name
+display_name = "Local PostgreSQL"
+
+# SSL mode: disable, prefer, require
+ssl_mode = "prefer"
+
+# Connection timeout in seconds
+connect_timeout = 30
+
+# Additional database profiles can be added
+# [[databases]]
+# name = "production"
+# url = "postgresql://user:pass@prod.example.com:5432/app_db"
+# ssl_mode = "require"
+
+[agent]
+# Maximum conversation history to retain
+max_history = 50
+
+# Maximum reasoning iterations per query
+max_iterations = 10
+
+# Default output format: table, json, csv
+default_output = "table"
+
+[safety]
+# Safety level: read-only, balanced, permissive
+safety_level = "balanced"
+
+# Require confirmation before executing mutations
+require_confirmation = true
+
+# Show SQL preview before execution
+show_sql_preview = true
+
+# Maximum query length in characters
+max_query_length = 10000

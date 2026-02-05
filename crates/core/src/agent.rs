@@ -553,7 +553,7 @@ mod tests {
 
         fn provider_info(&self) -> ProviderInfo {
             ProviderInfo {
-                name: "Mock".to_string(),
+                provider: "Mock".to_string(),
                 model: "mock".to_string(),
             }
         }

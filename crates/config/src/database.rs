@@ -5,7 +5,7 @@ use url::Url;
 
 /// Database profile configuration.
 #[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[serde(rename_all = "kebab-case")]
 pub struct DatabaseProfile {
     /// Unique profile name.
     pub name: String,

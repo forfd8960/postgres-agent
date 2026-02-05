@@ -89,6 +89,12 @@ impl AgentError {
         AgentError::Timeout { seconds }
     }
 
+    /// Create a new max iterations exceeded error.
+    #[must_use]
+    pub fn max_iterations_exceeded(iterations: u32) -> Self {
+        AgentError::MaxIterationsExceeded { iterations }
+    }
+
     /// Check if this is a retryable error.
     #[must_use]
     pub fn is_retryable(&self) -> bool {

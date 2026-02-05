@@ -5,7 +5,7 @@ use url::Url;
 
 /// LLM provider configuration.
 #[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[serde(rename_all = "kebab-case")]
 pub struct LlmConfig {
     /// Provider type (openai, anthropic, ollama, etc.)
     #[serde(default = "default_provider")]
