@@ -3,21 +3,16 @@
 use serde::{Deserialize, Serialize};
 
 /// Safety level.
-#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase")]
 pub enum SafetyLevel {
     /// Maximum safety - read-only, no modifications.
     ReadOnly,
     /// Balanced safety - confirmations for DML/DDL.
+    #[default]
     Balanced,
     /// Permissive - faster execution with minimal checks.
     Permissive,
-}
-
-impl Default for SafetyLevel {
-    fn default() -> Self {
-        Self::Balanced
-    }
 }
 
 /// Safety and security settings.

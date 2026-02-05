@@ -128,7 +128,10 @@ impl ApiKey {
         Self(SecretString::new(key))
     }
 
-    #[must_use]
+    /// Create an API key from an environment variable.
+    ///
+    /// # Errors
+    /// Returns an error if the environment variable is not set.
     pub fn from_env() -> Result<Self, EnvVarError> {
         Ok(Self(SecretString::from_env("OPENAI_API_KEY")?))
     }

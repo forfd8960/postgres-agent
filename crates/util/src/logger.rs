@@ -56,7 +56,7 @@ pub fn setup_logger(config: &LogConfig) -> Result<(), Box<dyn std::error::Error>
         || std::env::var("PG_AGENT_LOG_JSON")
             .is_ok_and(|v| v.to_lowercase() == "true");
 
-    let _guard = if let Some(ref log_path) = config.log_file {
+    if let Some(ref log_path) = config.log_file {
         // Ensure the parent directory exists
         if let Some(parent) = log_path.parent() {
             std::fs::create_dir_all(parent)?;

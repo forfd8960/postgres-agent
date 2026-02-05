@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 use super::{DatabaseProfile, LlmConfig, SafetyConfig};
 
 /// Application configuration.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct AppConfig {
     /// LLM provider configuration.
@@ -27,17 +27,6 @@ pub struct AppConfig {
 
 /// Alias for AppConfig.
 pub type Config = AppConfig;
-
-impl Default for AppConfig {
-    fn default() -> Self {
-        Self {
-            llm: LlmConfig::default(),
-            databases: Vec::new(),
-            agent: AgentConfig::default(),
-            safety: SafetyConfig::default(),
-        }
-    }
-}
 
 /// Agent behavior configuration.
 #[derive(Debug, Clone, Serialize, Deserialize)]
