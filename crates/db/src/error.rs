@@ -19,4 +19,10 @@ pub enum DbError {
 
     #[error("Schema introspection failed")]
     SchemaIntrospectionFailed,
+
+    #[error("Database error: {source}")]
+    Database {
+        #[from]
+        source: sqlx::Error,
+    },
 }

@@ -10,7 +10,7 @@ pub mod error;
 pub mod executor;
 pub mod schema;
 
-pub use connection::{DbConnection, DbConnectionConfig};
+pub use connection::{DbConnection, DbConnectionConfig, SslMode};
 pub use error::DbError;
 pub use executor::QueryExecutor;
-pub use schema::{ColumnInfo, DatabaseSchema, SchemaTable};
+pub use schema::{ColumnInfo, DatabaseSchema, SchemaTable, TableType};

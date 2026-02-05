@@ -326,11 +326,16 @@ mod tests {
 
     #[test]
     fn test_conversation_history() {
-        let mut history = ConversationHistory::with_max_messages(3);
-        history.add(PromptMessage::user("Hello"));
-        history.add(PromptMessage::assistant("Hi"));
-        history.add(PromptMessage::user("How are you?"));
-        history.add(PromptMessage::assistant("Good!"));
+        let conv = ConversationHistory::new();
+
+        let mut history = conv.with_max_messages(3).with_max_tokens(4096);
+        assert_eq!(history.max_messages, 3);
+        assert_eq!(history.max_tokens, 4096);
+
+        history.add(PromptMessage::User { content: "Test query".to_string() });
+        history.add(PromptMessage::Assistant { content: "Hi".to_string(), tool_calls: vec![] });
+        history.add(PromptMessage::User { content: "How are you?".to_string() });
+        history.add(PromptMessage::Assistant { content: "Good!".to_string(), tool_calls: vec![] });
 
         // Should be pruned to 3 messages
         assert_eq!(history.messages().len(), 3);
